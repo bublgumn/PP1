@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form name="user" action="/3_war_exploded/ServletCreate" method="post">
+<form name="user" action="/3_war_exploded/CreateUserServlet" method="post">
     <p>Name</p>
     <input title="Name" type="text" name="name">
     <p>Password</p>

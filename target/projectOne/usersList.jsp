@@ -42,13 +42,13 @@ this.id = id;
             <td>${user.password}</td>
             <td>${user.age}</td>
             <td>
-                <form name="delete" action="/3_war_exploded/ServletOne" method="post">
+                <form name="delete" action="/3_war_exploded/DeleteUserServlet" method="get">
                     <input title="Name"  type="hidden" name="name" value="${user.name}">
                     <input type="submit" title="Submit" value="Delete">
                 </form>
             </td>
             <td>
-                <form name="update" action="/3_war_exploded/ServletUpdate" method="get">
+                <form name="update" action="/3_war_exploded/UpdateUserServlet" method="get">
                     <input title="Id"  type="hidden" name="id" value="${user.id}">
                     <input title="Name"  type="hidden" name="name" value="${user.name}">
                     <input title="Password"  type="hidden" name="password" value="${user.password}">
@@ -64,7 +64,7 @@ this.id = id;
 
 <br>
 
-<a href="/3_war_exploded/ServletCreate"><h3>Create user</h3></a>
+<a href="/3_war_exploded/CreateUserServlet"><h3>Create user</h3></a>
 
 </body>
 </html>

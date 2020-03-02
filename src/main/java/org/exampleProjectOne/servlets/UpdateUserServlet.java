@@ -1,8 +1,7 @@
 package org.exampleProjectOne.servlets;
 
-import Util.PageGenerator;
 import org.exampleProjectOne.model.User;
-import org.exampleProjectOne.service.UserService;
+import org.exampleProjectOne.service.UserServiceMysql;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,28 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@WebServlet("/ServletUpdate")
-public class EditUser extends HttpServlet {
+@WebServlet("/UpdateUserServlet")
+public class UpdateUserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if(updateUser(req)){
             List<User> userList = null;
             try {
-                userList = UserService.getUserService().getAllUser();
+                userList = UserServiceMysql.getUserServiceMysql().getAllUser();
             } catch (Exception e) {
-                ServletCreate.outPrint(resp);
+                resp.setContentType("text/html;charset=utf-8");
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
             req.setAttribute("users", userList);
             req.getRequestDispatcher("usersList.jsp").forward(req, resp);
         } else {
-            ServletCreate.outPrint(resp);
+            resp.setContentType("text/html;charset=utf-8");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 
@@ -39,7 +37,6 @@ public class EditUser extends HttpServlet {
         List<User> userList = createPageList(req);
         req.setAttribute("users", userList);
         req.getRequestDispatcher("editUser.jsp").forward(req, resp);
-
     }
 
     private List<User> createPageList(HttpServletRequest request) {
@@ -61,14 +58,9 @@ public class EditUser extends HttpServlet {
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         Long age = Long.parseLong(req.getParameter("age"));
-        System.out.println(id);
-        System.out.println(name);
-        System.out.println(password);
-        System.out.println(age);
-        System.out.println();
         if (id != null && name != null && password != null && age != null) {
             try {
-                UserService.getUserService().updateClientsMoney(id, name, password, age);
+                UserServiceMysql.getUserServiceMysql().updateClient(id, name, password, age);
                 return true;
             } catch (Exception e) {
                 return false;

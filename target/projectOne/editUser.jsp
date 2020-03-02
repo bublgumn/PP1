@@ -33,7 +33,7 @@
             <td>${user.age}</td>
         </tr>
         <tr>
-            <form name="update" action="/3_war_exploded/ServletUpdate" method="post">
+            <form name="update" action="/3_war_exploded/UpdateUserServlet" method="post">
                 <td>
                     <input title="Id"  type="hidden" name="id" value="${user.id}">
                 </td>

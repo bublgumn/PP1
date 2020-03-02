@@ -41,7 +41,7 @@
 
 <br>
 
-<a href="/3_war_exploded/ServletOne"><h3>User List</h3></a>
+<a href="/3_war_exploded/ListUsersServlet"><h3>User List</h3></a>
 
 </body>
 </html>
